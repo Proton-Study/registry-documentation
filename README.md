@@ -1,6 +1,6 @@
 # PROTON Registry Documentation
-A Documentation for PROTON Registry. <br>
 PROTON - Programme for Ocular Inflammation and Infection Translational Research represents the seamless integrated platform of multicentric interdisciplinary collaboration aimed at confronting the complexities of ocular inflammatory and infectious diseases (OIID). By uniting a diverse team of experts from biological, immunological, cellular, and computational sciences, PROTON is dedicated to pioneering research and developing innovative solutions that address the pressing challenges of OIID.
+
 ## Screens
 A summary of all the main screens in the PROTON Registry, and a description of the features on each screen.
 
