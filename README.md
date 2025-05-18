@@ -19,10 +19,10 @@ This screen is the first screen that users see when they log in to the PROTON Re
 | Records Count | Below Selectors | This is a set of numbers representing the total records, according to the selections made in the 2 previous selectors. |
 | Main Dashboard | Below Records Count | Shows graphs and records based on various features and parameters. |
 
-## Registry Screen
+## 2. Registry Screen
 This is the screen that users can use to see the Patient Registry, and see stats, images that have been uploaded, and more for the patients that are registered in the PROTON Registry.
 
-### 2. Screenshot
+### Screenshot
 ![registry screen screenshot](/src/images/registry%20screen.png)
 
 ### Features on the Screen:
