@@ -1,7 +1,7 @@
 # PROTON Registry Documentation
 PROTON - Programme for Ocular Inflammation and Infection Translational Research represents the seamless integrated platform of multicentric interdisciplinary collaboration aimed at confronting the complexities of ocular inflammatory and infectious diseases (OIID). By uniting a diverse team of experts from biological, immunological, cellular, and computational sciences, PROTON is dedicated to pioneering research and developing innovative solutions that address the pressing challenges of OIID.
 
-## Screens
+# Screens
 A summary of all the main screens in the PROTON Registry, and a description of the features on each screen.
 
 ## 1. Dashboard Screen
@@ -34,7 +34,7 @@ This is the screen that users can use to see the Patient Registry, and see stats
 | EM Button | Right of Export Button | Downloads the medication and doses data of patients in a csv format |
 | Patient Record Table | Main Screen Component | Contains the following information in a tabular format: Patient Code, Study Class, Month of Presentation, Gender, Age, Visits, Update Date and Number of Images uploaded |
 
-## Actions
+# Actions
 
 This section describes the various actions that can be performed on the PROTON Registry, and how to perform them.
 
