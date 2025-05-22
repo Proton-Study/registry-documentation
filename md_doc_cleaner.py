@@ -58,7 +58,6 @@ def content_handler(content:str, token_limit:int) -> list[str]:
     elif content.startswith('!['):
         return []
     else:
-        # TODO: Split the tokens by words to prevent tokens split mid-word. Count tokens by words not characters
         final_page_content = split_string_by_tokens(content, token_limit)
     
     return final_page_content
@@ -87,7 +86,7 @@ def chunkify_document(document:list[langchain_core.documents.base.Document], tok
     
     return final_chunkified_document
 
-def md_doc_reader(filepath:str) -> list[str]:
+def md_doc_reader(filepath:str, token_limit:int = 200) -> list[str]:
     markdown_text = open(filepath).read()
 
     # Define the Markdown splitter, along with headers for dividing the file
@@ -95,7 +94,7 @@ def md_doc_reader(filepath:str) -> list[str]:
         headers_to_split_on=[('#', 'major_heading'), ('##', 'minor_heading'), ('###', 'sub_heading')]
     )
     split_document = splitter.split_text(markdown_text) # Returns document split into sections
-    chunkified_document = chunkify_document(document = split_document, token_limit = 200) # Returns list of chunks of document based on token limits
+    chunkified_document = chunkify_document(document = split_document, token_limit = token_limit) # Returns list of chunks of document based on token limits
 
     return chunkified_document
 
