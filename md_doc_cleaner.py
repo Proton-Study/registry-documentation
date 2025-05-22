@@ -1,5 +1,6 @@
 from langchain.text_splitter import MarkdownHeaderTextSplitter
 import langchain_core.documents
+import re
 
 def extract_data_from_row(row:str) -> list[str]:
     row_data = row[1:-1].split('|')
@@ -62,13 +63,18 @@ def content_handler(content:str, token_limit:int) -> list[str]:
     
     return final_page_content
 
+def header_cleaner(header:str) -> str:
+    cleaned_header = re.sub(r'[0-9.]', '', header)
+    cleaned_header = cleaned_header.strip()
+    return cleaned_header
+
 def chunkify_document(document:list[langchain_core.documents.base.Document], token_limit:int = 200) -> list[str]:
     final_chunkified_document = []
 
     for section in document:
-        major_heading = section.metadata['major_heading'] if 'major_heading' in section.metadata else 'None'
-        minor_heading = section.metadata['minor_heading'] if 'minor_heading' in section.metadata else 'None'
-        sub_heading = section.metadata['sub_heading'] if 'sub_heading' in section.metadata else 'None'
+        major_heading = header_cleaner(section.metadata['major_heading']) if 'major_heading' in section.metadata else 'None'
+        minor_heading = header_cleaner(section.metadata['minor_heading']) if 'minor_heading' in section.metadata else 'None'
+        sub_heading = header_cleaner(section.metadata['sub_heading']) if 'sub_heading' in section.metadata else 'None'
         page_content = section.page_content
 
         final_page_content = content_handler(page_content, token_limit)
@@ -81,14 +87,22 @@ def chunkify_document(document:list[langchain_core.documents.base.Document], tok
     
     return final_chunkified_document
 
-def main():
-    markdown_text = open('README.md').read()
+def md_doc_reader(filepath:str) -> list[str]:
+    markdown_text = open(filepath).read()
+
+    # Define the Markdown splitter, along with headers for dividing the file
     splitter = MarkdownHeaderTextSplitter(
         headers_to_split_on=[('#', 'major_heading'), ('##', 'minor_heading'), ('###', 'sub_heading')]
     )
-    split_document = splitter.split_text(markdown_text)
-    chunkified_document = chunkify_document(split_document)
+    split_document = splitter.split_text(markdown_text) # Returns document split into sections
+    chunkified_document = chunkify_document(document = split_document, token_limit = 200) # Returns list of chunks of document based on token limits
 
+    return chunkified_document
+
+
+def main():
+    filepath = 'README.md'
+    chunkified_document = md_doc_reader(filepath=filepath)
     for line in chunkified_document:
         print(line)
 
